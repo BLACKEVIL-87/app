@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مربی من — تمرین و پیشرفت</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f3f1ee;--card:#fff;--tx:#101216;--mu:#6a6f7a;--bd:#dedbd6;--hong:#d7263d;--chung:#1f5fbf;--dobok:#2b2f38;--band:#101216;--bandtx:#f3f1ee}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1013;--card:#181b21;--tx:#eceae6;--mu:#98a0ad;--bd:#2a2e36;--hong:#ef4a5e;--chung:#5b93e8;--dobok:#c9ccd3;--band:#000;--bandtx:#eceae6}}
+:root[data-theme="dark"]{--bg:#0e1013;--card:#181b21;--tx:#eceae6;--mu:#98a0ad;--bd:#2a2e36;--hong:#ef4a5e;--chung:#5b93e8;--dobok:#c9ccd3;--band:#000;--bandtx:#eceae6}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font-family:'Vazirmatn',Tahoma,system-ui,sans-serif;line-height:1.7;padding-bottom:84px}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:22px;font-weight:800;margin:4px 0 14px}
+h2{font-size:16px;font-weight:800;margin:22px 0 8px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px}
+label{display:block;font-size:13px;color:var(--mu);margin:8px 0 3px}
+input,select{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx)}
+textarea{width:100%;font:12px monospace;min-height:80px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);padding:8px;direction:ltr}
+.row{display:flex;gap:8px}.row>div{flex:1;min-width:0}
+.chips{display:flex;gap:8px;margin-bottom:12px}
+.chip{flex:1;font:inherit;font-weight:700;padding:11px 6px;border-radius:12px;border:2px solid var(--bd);background:var(--card);color:var(--tx);cursor:pointer}
+.chip.on{color:#fff;border-color:transparent}
+.chip.on[data-c=body]{background:var(--chung)}.chip.on[data-c=speed]{background:var(--hong)}.chip.on[data-c=tkd]{background:var(--dobok);color:var(--bg)}
+.btn{width:100%;margin-top:12px;font:inherit;font-weight:800;font-size:16px;padding:12px;border:0;border-radius:12px;background:var(--hong);color:#fff;cursor:pointer}
+.btn.alt{background:var(--card);color:var(--tx);border:1px solid var(--bd);margin-top:8px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--chung);outline-offset:2px}
+.timer{background:var(--band);color:var(--bandtx);border-radius:14px;padding:16px;text-align:center;margin-bottom:12px}
+#tm{font-size:54px;font-weight:800;direction:ltr;letter-spacing:2px;line-height:1.2}
+.tb{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.tb button{font:inherit;font-size:14px;padding:7px 13px;border-radius:20px;border:1px solid #555;background:transparent;color:var(--bandtx);cursor:pointer}
+.it{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.it:last-child{border:0}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.it b{display:block}.it small{color:var(--mu)}
+.it .g{flex:1}.x{background:none;border:0;color:var(--mu);font-size:20px;cursor:pointer;padding:4px 8px}
+.st{display:flex;gap:8px}.st div{flex:1;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px;text-align:center}
+.st b{display:block;font-size:26px;font-weight:800;line-height:1.3}.st small{color:var(--mu);font-size:12px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:100px}
+.bars div{flex:1;background:var(--chung);border-radius:6px 6px 0 0;min-height:3px;position:relative}
+.bars span{position:absolute;top:-20px;width:100%;text-align:center;font-size:12px;color:var(--mu)}
+.empty{color:var(--mu);text-align:center;padding:14px 0}
+svg{width:100%;height:auto;display:block}
+nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav div{max-width:640px;margin:0 auto;display:flex}
+nav button{flex:1;font:inherit;font-size:14px;font-weight:700;padding:14px 4px;border:0;background:none;color:var(--mu);cursor:pointer}
+nav button.on{color:var(--hong);box-shadow:inset 0 3px 0 var(--hong)}
+#cnt{font-size:96px;font-weight:800;line-height:1.1;text-align:center}
+.hint{color:var(--mu);font-size:13px;margin:8px 0 0}
+#vid{width:100%;max-height:220px;object-fit:cover;border-radius:12px;background:#000;transform:scaleX(-1)}
+a.btn{display:block;text-align:center;text-decoration:none}
+input[type=range]{padding:0}
+</style>
+</head>
+<body>
+<main id="v"></main>
+<nav><div>
+<button data-t="log" onclick="tab='log';go()">ثبت تمرین</button>
+<button data-t="gate" onclick="tab='gate';go()">قفل اینستا</button>
+<button data-t="pr" onclick="tab='pr';go()">پیشرفت</button>
+<button data-t="his" onclick="tab='his';go()">تاریخچه</button>
+</div></nav>
+<script>
+const C={
+ body:{n:'بدنسازی',col:'var(--chung)',f:[['sets','ست','ست'],['reps','تکرار','تکرار'],['kg','وزنه (کیلو)','کیلو']],
+  ex:['شنا','پرس سینه','اسکات','ددلیفت','بارفیکس','پرس سرشانه','جلو بازو','پشت بازو','زیر بغل']},
+ speed:{n:'سرعت',col:'var(--hong)',f:[['reps','تکرار','تکرار'],['m','مسافت (متر)','متر'],['s','زمان (ثانیه)','ثانیه']],
+  ex:['دوی ۳۰ متر','دوی ۶۰ متر','دوی ۱۰۰ متر','طناب زدن','پلایومتریک','نردبان چابکی']},
+ tkd:{n:'تکواندو',col:'var(--dobok)',f:[['rounds','راند','راند'],['min','مدت (دقیقه)','دقیقه']],
+  ex:['دیت‌چاگی','یوپ‌چاگی','نرییو‌چاگی','شدو (سایه)','ضربه به هدف','سپرینگ'],
+  forms:['تگوک ۱ (ایل‌جانگ)','تگوک ۲ (ای‌جانگ)','تگوک ۳ (سام‌جانگ)','تگوک ۴ (سا‌جانگ)','تگوک ۵ (او‌جانگ)','تگوک ۶ (یوک‌جانگ)','تگوک ۷ (چیل‌جانگ)','تگوک ۸ (پال‌جانگ)','کوریو','کومگانگ','تیبک','پیونگوان','شیپجین','جی‌تائه'],
+  ff:[['reps','تعداد اجرا','بار'],['min','مدت (دقیقه)','دقیقه']]}
+};
+const fld=(c,e)=>C[c].forms&&C[c].forms.includes(e)?C[c].ff:C[c].f;
+const $=s=>document.querySelector(s);
+const pd=s=>String(s).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const fa=n=>pd(+(+n).toFixed(1));
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dayF=d=>new Date(d+'T12:00:00').toLocaleDateString('fa-IR-u-ca-persian',{month:'long',day:'numeric'});
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+let S={logs:[],weights:[]},tab='log',cat='body',tm=null,left=0;
+try{const r=JSON.parse(localStorage.getItem('coach')||'null');if(r&&r.logs)S=r;S.weights=S.weights||[]}catch(e){}
+const save=()=>{try{localStorage.setItem('coach',JSON.stringify(S))}catch(e){}try{window.Android&&Android.setGated(apps().map(pkgOf).filter(Boolean).join(','))}catch(e){}};
+const fmt=l=>{const c=C[l.cat];return c?fld(l.cat,l.ex).filter(([k])=>l.v[k]).map(([k,,u])=>fa(l.v[k])+' '+u).join(' · '):''};
+const item=(l,del)=>`<div class="it"><span class="dot" style="background:${C[l.cat]?C[l.cat].col:'#888'}"></span><div class="g"><b>${esc(l.ex)}</b><small>${esc(fmt(l))}${del?' — '+dayF(l.d):''}</small></div><button class="x" aria-label="حذف" onclick="del(${+l.id})">×</button></div>`;
+
+function vLog(){
+ const c=C[cat],t=S.logs.filter(l=>l.d===today()).reverse();
+ return `<h1>تمرین امروز</h1>
+ <div class="chips">${Object.keys(C).map(k=>`<button class="chip ${k==cat?'on':''}" data-c="${k}" onclick="cat='${k}';go()">${C[k].n}</button>`).join('')}</div>
+ <div class="card"><label for="ex">${c.forms?'حرکت یا فرم (پومسه)':'حرکت'}</label><select id="ex" onchange="fields()">${c.forms?`<optgroup label="فرم (پومسه)">${c.forms.map(e=>`<option>${e}</option>`).join('')}</optgroup><optgroup label="تمرین‌های دیگر">${c.ex.map(e=>`<option>${e}</option>`).join('')}</optgroup>`:c.ex.map(e=>`<option>${e}</option>`).join('')}</select>
+ <div class="row" id="fs"></div>
+ <button class="btn" onclick="add()">ثبت</button></div>
+ <div class="timer"><div id="tm">۰۰:۰۰</div><div class="tb">
+ <button onclick="T(30)">۳۰ ثانیه</button><button onclick="T(60)">۱ دقیقه</button><button onclick="T(90)">۹۰ ثانیه</button><button onclick="T(120)">راند ۲ دقیقه</button><button onclick="T(0)">توقف</button></div></div>
+ <h2>ثبت‌شده امروز</h2><div class="card">${t.length?t.map(l=>item(l,false)).join(''):'<div class="empty">هنوز چیزی ثبت نکرده‌اید.</div>'}</div>`;
+}
+function vPr(){
+ const now=new Date(today()+'T12:00:00'),wk=Array(8).fill(0);
+ S.logs.forEach(l=>{const i=Math.floor((now-new Date(l.d+'T12:00:00'))/6048e5);if(i>=0&&i<8)wk[i]++});
+ const days=new Set(S.logs.map(l=>l.d)).size,tk=S.logs.filter(l=>l.cat=='tkd').reduce((a,l)=>a+(+l.v.min||0),0);
+ const mx=Math.max(1,...wk),bars=wk.slice().reverse().map(n=>`<div style="height:${n/mx*100}%"><span>${n?fa(n):''}</span></div>`).join('');
+ const pr={};
+ S.logs.forEach(l=>{const v=l.v;let val,txt;
+  if(l.cat=='body'&&+v.kg){val=+v.kg;txt=fa(v.kg)+' کیلو'}
+  else if(l.cat=='speed'&&+v.s){val=-v.s;txt=fa(v.s)+' ثانیه'}else return;
+  const k=l.cat+l.ex;if(!pr[k]||val>pr[k].val)pr[k]={val,txt,ex:l.ex,cat:l.cat,d:l.d}});
+ const prs=Object.values(pr),fm={};
+ S.logs.forEach(l=>{if(l.cat=='tkd'&&C.tkd.forms.includes(l.ex))fm[l.ex]=(fm[l.ex]||0)+(+l.v.reps||0)});
+ const ft=Object.entries(fm).sort((a,b)=>b[1]-a[1]);
+ const w=S.weights.slice().sort((a,b)=>a.d<b.d?-1:1).slice(-12);
+ let chart='<div class="empty">حداقل دو وزن ثبت کنید تا نمودار ساخته شود.</div>';
+ if(w.length>1){const W=300,H=110,p=14,lo=Math.min(...w.map(x=>x.kg)),hi=Math.max(...w.map(x=>x.kg)),rg=(hi-lo)||1;
+  const pt=w.map((x,i)=>[W-p-i*(W-2*p)/(w.length-1),H-p-(x.kg-lo)/rg*(H-2*p)]);
+  chart=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="نمودار وزن بدن"><polyline points="${pt.map(q=>q.join(',')).join(' ')}" fill="none" stroke="var(--hong)" stroke-width="2.5" stroke-linejoin="round"/>${pt.map(q=>`<circle cx="${q[0]}" cy="${q[1]}" r="3.5" fill="var(--hong)"/>`).join('')}</svg>
+  <div class="row" style="justify-content:space-between;color:var(--mu);font-size:13px"><span>${dayF(w[w.length-1].d)}: ${fa(w[w.length-1].kg)} کیلو</span><span>${dayF(w[0].d)}: ${fa(w[0].kg)} کیلو</span></div>`}
+ return `<h1>پیشرفت</h1>
+ <div class="st"><div><b>${fa(days)}</b><small>روز تمرین</small></div><div><b>${fa(wk[0])}</b><small>حرکت این هفته</small></div><div><b>${fa(tk)}</b><small>دقیقه تکواندو</small></div></div>
+ <h2>حرکت‌های ثبت‌شده در ۸ هفته اخیر</h2><div class="card" style="padding-top:28px"><div class="bars">${bars}</div></div>
+ <h2>وزن بدن</h2><div class="card"><div class="row"><div><input id="bw" type="number" inputmode="decimal" step="0.1" min="0" placeholder="وزن امروز (کیلو)" aria-label="وزن امروز"></div><div style="flex:none"><button class="btn" style="margin:0;padding:10px 18px" onclick="addW()">ثبت</button></div></div>${chart}</div>
+ <h2>فرم‌های تکواندو</h2><div class="card">${ft.length?ft.map(([n,c])=>`<div class="it"><span class="dot" style="background:var(--dobok)"></span><div class="g"><b>${esc(n)}</b></div><b>${fa(c)} بار</b></div>`).join(''):'<div class="empty">اولین فرمتان را در بخش تکواندو ثبت کنید.</div>'}</div>
+ <h2>بهترین رکوردها</h2><div class="card">${prs.length?prs.map(r=>`<div class="it"><span class="dot" style="background:${C[r.cat].col}"></span><div class="g"><b>${esc(r.ex)}</b><small>${dayF(r.d)}</small></div><b>${r.txt}</b></div>`).join(''):'<div class="empty">با ثبت وزنه و زمان‌ها، رکوردهایتان اینجا می‌آید.</div>'}</div>`;
+}
+function vHis(){
+ const h=S.logs.slice().reverse();
+ return `<h1>تاریخچه</h1><div class="card">${h.length?h.slice(0,80).map(l=>item(l,true)).join(''):'<div class="empty">هنوز تمرینی ثبت نشده است.</div>'}</div>
+ <h2>پشتیبان‌گیری</h2><div class="card"><textarea id="bk" aria-label="داده‌ها"></textarea>
+ <button class="btn alt" onclick="exp()">نمایش و کپی پشتیبان</button><button class="btn alt" onclick="imp()">بازیابی از متن بالا</button><div id="msg" class="empty"></div></div>`;
+}
+function go(){camStop();$('#v').innerHTML=({log:vLog,pr:vPr,his:vHis,gate:vGate})[tab]();document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==tab));fields();tick()}
+function fields(){
+ const e=$('#fs');if(!e)return;const f=fld(cat,$('#ex').value),form=f===C[cat].ff;
+ e.innerHTML=f.map(([k,l])=>k=='reps'&&form?`<div><label for="f_${k}">${l}</label><div class="row"><button class="chip" style="flex:none;width:44px" onclick="st(-1)" aria-label="کم">−</button><input id="f_${k}" type="number" inputmode="numeric" min="0" value="1" style="text-align:center"><button class="chip" style="flex:none;width:44px" onclick="st(1)" aria-label="زیاد">+</button></div></div>`:`<div><label for="f_${k}">${l}</label><input id="f_${k}" type="number" inputmode="decimal" min="0" step="any"></div>`).join('')
+}
+function st(d){const i=$('#f_reps');i.value=Math.max(0,(+i.value||0)+d)}
+function add(){
+ const v={};let any=false;const f=fld(cat,$('#ex').value);
+ f.forEach(([k])=>{const x=parseFloat($('#f_'+k).value);if(x>0){v[k]=x;any=true}});
+ if(!any){$('#f_'+f[0][0]).focus();return}
+ S.logs.push({id:Date.now(),d:today(),cat,ex:$('#ex').value,v});save();go()
+}
+function del(id){S.logs=S.logs.filter(l=>l.id!==id);save();go()}
+function addW(){const kg=parseFloat($('#bw').value);if(!(kg>0))return;S.weights=S.weights.filter(w=>w.d!==today());S.weights.push({d:today(),kg});save();go()}
+function T(s){clearInterval(tm);left=s;tick();if(!s)return;tm=setInterval(()=>{left--;tick();if(left<=0){clearInterval(tm);try{navigator.vibrate&&navigator.vibrate([300,150,300])}catch(e){}}},1000)}
+function tick(){const e=$('#tm');if(!e)return;const l=Math.max(left,0);e.textContent=pd(String(Math.floor(l/60)).padStart(2,'0')+':'+String(l%60).padStart(2,'0'))}
+function exp(){const t=$('#bk');t.value=JSON.stringify(S);t.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}$('#msg').textContent=ok?'کپی شد. آن را جایی امن نگه دارید.':'متن را دستی کپی کنید.'}
+function imp(){try{const r=JSON.parse($('#bk').value);if(!Array.isArray(r.logs))throw 0;S={logs:r.logs.filter(l=>l&&C[l.cat]&&l.v),weights:Array.isArray(r.weights)?r.weights:[]};save();go()}catch(e){$('#msg').textContent='متن پشتیبان معتبر نیست.'}}
+const DEF=[['ig','اینستاگرام','instagram://app','https://www.instagram.com','com.instagram.android'],['tg','تلگرام','tg://','https://web.telegram.org','org.telegram.messenger'],['yt','یوتیوب','youtube://','https://www.youtube.com','com.google.android.youtube'],['tt','تیک‌تاک','tiktok://','https://www.tiktok.com','com.zhiliaoapp.musically'],['wa','واتساپ','whatsapp://','https://wa.me','com.whatsapp']].map(([id,n,u,w,k])=>({id,n,u,w,k,c:20}));
+const apps=()=>(S.apps&&S.apps.length?S.apps:(S.apps=JSON.parse(JSON.stringify(DEF))));
+const pkgOf=a=>a.k||(a.u.includes('://')?'':a.u.trim());
+const cur=()=>apps().find(a=>a.id==S.sel)||apps()[0];
+const lnk=a=>a.u.includes('://')?a.u:'intent://#Intent;package='+a.u.trim()+';end';
+function setC(id,v){const a=apps().find(x=>x.id==id);if(a){a.c=Math.max(1,parseInt(v)||20);save()}}
+function rmApp(id){if(apps().length<2)return;S.apps=apps().filter(a=>a.id!=id);if(S.sel==id)S.sel=S.apps[0].id;save();go()}
+function addApp(){const n=$('#an').value.trim(),u=$('#au').value.trim();if(!n||!u){(n?$('#au'):$('#an')).focus();return}const id='c'+Date.now();apps().push({id,n,u,w:'',c:20});S.sel=id;save();go()}
+function vGate(){const a=cur();return `<h1>قبل از باز کردن برنامه، شنا</h1>
+ ${window.Android?`<div class="card"><b>قفل خودکار</b><p class="hint">${Android.a11yOn()?'فعال است ✓':'فعال نیست. تنظیمات ← دسترسی‌پذیری ← برنامه‌های نصب‌شده ← مربی من ← روشن.'}</p>${Android.a11yOn()?'':`<button class="btn" onclick="Android.openA11y()">باز کردن تنظیمات</button>`}</div>`:''}
+ <div class="card"><label>کدام برنامه را می‌خواهید باز کنید؟ (عدد کنار هر برنامه، تعداد شنای لازم است)</label>
+ ${apps().map(p=>`<div class="it"><button class="chip ${p.id==a.id?'on':''}" data-c="body" style="text-align:start" onclick="S.sel='${p.id}';save();go()">${esc(p.n)}</button><input type="number" inputmode="numeric" min="1" value="${p.c}" aria-label="تعداد شنا برای ${esc(p.n)}" style="width:72px;text-align:center" onchange="setC('${p.id}',this.value)"><small>شنا</small><button class="x" aria-label="حذف ${esc(p.n)}" onclick="rmApp('${p.id}')">×</button></div>`).join('')}
+ <details style="margin-top:10px"><summary>افزودن برنامه دیگر</summary>
+ <label for="an">نام برنامه</label><input id="an">
+ <label for="au">نام بسته اندروید یا لینک برنامه</label><input id="au" dir="ltr" placeholder="com.instagram.android یا instagram://app">
+ <button class="btn alt" onclick="addApp()">افزودن</button>
+ <p class="hint">در اندروید نام بسته کافی است و برای هر برنامه‌ای کار می‌کند. در آیفون باید لینک اختصاصی همان برنامه را بدانید.</p></details></div>
+ <div class="card"><label for="sn">حساسیت شمارش (۱ کم، ۶ زیاد)</label><input id="sn" type="range" min="1" max="6" value="${S.sens||4}" onchange="S.sens=+this.value;save()">
+ <p class="hint">گوشی را روی زمین و کنار بدنتان بگذارید تا از پهلو دیده شوید. پشت شما نباید کسی رفت‌وآمد کند.</p>
+ <button class="btn" onclick="camStart()">شروع شنا برای ${esc(a.n)}</button>
+ <p class="hint">لینک اتوماسیون این برنامه: آدرس همین صفحه و بعدش <span dir="ltr">#gate=${a.id}</span></p></div>
+ <div id="cam" hidden><div class="card"><video id="vid" playsinline muted></video><canvas id="cv" width="64" height="48" hidden></canvas>
+ <div id="cnt">۰</div><div class="empty" id="of"></div>
+ <div class="row"><button class="btn alt" onclick="man(-1)">−۱</button><button class="btn alt" onclick="man(1)">+۱</button></div>
+ <div class="hint" id="cmsg"></div><button class="btn alt" onclick="camEnd()">پایان و ذخیره</button></div></div>`}
+let stream=null,iv=null,cnt=0,prev=null,pos=0,mn=0,sm=0,tgt=20,done=false,lastT=0,AC;
+function beep(f,ms){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;g.gain.value=.15;o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+ms/1000)}catch(e){}}
+function vyOf(g,p){let a=0,b=0;for(let y=1;y<47;y++)for(let x=0;x<64;x++){const i=y*64+x,iy=(g[i+64]-g[i-64])/2,it=g[i]-p[i];if(Math.abs(it)>4&&Math.abs(iy)>3){a+=it*iy;b+=iy*iy}}return b>150?Math.max(-4,Math.min(4,-a/b)):0}
+function feed(vy,sens){pos+=vy;mn+=(pos-mn)*.01;const p=pos-mn,T=5.2-.75*(sens||4);if(sm==0&&p>T)sm=1;else if(sm==1&&p<-T){sm=0;return true}return false}
+function step(){const v=$('#vid'),cv=$('#cv');if(!v||!cv||v.readyState<2)return;const x=cv.getContext('2d',{willReadFrequently:true});x.drawImage(v,0,0,64,48);const d=x.getImageData(0,0,64,48).data,g=new Float32Array(3072);for(let i=0;i<3072;i++)g[i]=(d[i*4]+d[i*4+1]+d[i*4+2])/3;if(prev&&feed(vyOf(g,prev),S.sens)&&Date.now()-lastT>500){lastT=Date.now();rep()}prev=g}
+function upd(){const c=$('#cnt');if(c&&!done){c.textContent=pd(cnt);$('#of').textContent='از '+pd(tgt)+' شنا'}}
+function rep(){if(done)return;cnt++;upd();beep(660,70);if(cnt>=tgt)finish()}
+function man(d){if(done)return;cnt=Math.max(0,cnt+d);upd();if(d>0){beep(660,70);if(cnt>=tgt)finish()}}
+function logPU(){if(cnt>0){S.logs.push({id:Date.now(),d:today(),cat:'body',ex:'شنا',v:{sets:1,reps:cnt}});save()}}
+function camStop(){clearInterval(iv);iv=null;if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}}
+function camEnd(){done=true;camStop();logPU();go()}
+function finish(){done=true;camStop();logPU();beep(880,400);try{navigator.vibrate&&navigator.vibrate([200,100,200,100,400])}catch(e){}
+ const a=cur(),k=pkgOf(a),nat=window.Android&&k;if(nat)try{Android.grant(k,15)}catch(e){}$('#cam').innerHTML=`<div class="card"><div id="cnt" style="color:var(--hong)">✓</div><div class="empty">${fa(cnt)} شنا ثبت شد. ${esc(a.n)} آزاد است.</div>${nat?`<button class="btn" onclick="Android.openApp('${esc(k)}')">باز کردن ${esc(a.n)}</button>`:`<a class="btn" href="${esc(lnk(a))}" target="_top">باز کردن ${esc(a.n)}</a>`}${!nat&&a.w?`<a class="btn alt" href="${esc(a.w)}" target="_top">باز کردن در مرورگر</a>`:''}</div>`}
+async function camStart(){tgt=cur().c||20;cnt=0;done=false;prev=null;pos=0;mn=0;sm=0;$('#cam').hidden=false;upd();beep(440,60);
+ try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:320,height:240},audio:false});const v=$('#vid');v.srcObject=stream;await v.play();iv=setInterval(step,80)}
+ catch(e){$('#vid').hidden=true;$('#cmsg').textContent='دوربین در دسترس نیست. لینک را مستقیم در Chrome یا Safari باز کنید، یا با دکمه +۱ دستی بشمارید.'}}
+
+function gateFor(m){tab='gate';const a=apps().find(x=>x.id==m||pkgOf(x)==m);if(a)S.sel=a.id}
+if(location.hash.startsWith('#gate'))gateFor(location.hash.split('=')[1]);
+addEventListener('hashchange',()=>{if(location.hash.startsWith('#gate')){gateFor(location.hash.split('=')[1]);go()}});
+if(window.Android)save();
+go();
+</script>
+</body>
+</html>
